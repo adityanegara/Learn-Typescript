@@ -1,0 +1,25 @@
+A) TypeScript: Pengecek type static.
+    : TypeScript mengecek error pada program sebelum eksekusi, 
+    ia mengeceknya berdasarkan jenis values.
+
+    A.1) Contoh
+    const obj = {width: 10, height: 15};
+    const area = obj.width * obj.heigth
+    Property 'heigth' does not exist on type 
+    '{width: number; height: number}'. Did you mean 'height'?
+
+B) Typescript ialah superset JavaScript
+    : Typescript ialah bahasa pemrograman yang merupakan superset
+    dari Javascript. Ini berarti anda dapat memasukan JavaScript
+    code dalam typescript. Tetapi typescript memberikan aturan
+    mengenai bagaimana nilai-nilai dapat digunakan.
+
+C) Runtime Behavior
+    : Typescript menjaga perilaku runtim dari javascript. Setelah
+    compiler typescript selesai mengecek code, 
+    
+D) Menghapus Types
+    : ia akan mengapus types untuk memproduksi code yang 
+    telah dicompile. Ini berarti code yang telah di compile akan
+    menghasilkan code javascript murni yang tidak ada type datanya.
+    

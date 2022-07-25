@@ -1,0 +1,12 @@
+A) Penjelasan Typescript
+    : Typescript ialah bahasa pemrograman yang dibuat oleh
+    Microsoft untuk menangani kekurangan JavaScript.
+
+B) Keuntungan Menggunakan Typescript
+    B.1) Static Typing
+    : Type data dari variable tidak dapat berubah. Sedangkan
+    dynamically typed ialah kebalikannya. Type data dapat dirubah.
+
+    B.2) Code completion
+    B.3) Refactoring
+    B.4) Shorthand notations

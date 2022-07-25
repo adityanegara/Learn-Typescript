@@ -1,0 +1,5 @@
+1) Install node JS pada komputer Anda
+2) Menginstall typescript secara global
+    : npm install -g typescript
+3) Menjalankan typescript
+    : npx tsc

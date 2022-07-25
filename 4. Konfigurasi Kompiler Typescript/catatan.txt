@@ -1,0 +1,13 @@
+A) Penjelasan setting
+    1) target
+    :  Kompilasi versi javascript (es2016, es2017, es2018)
+
+    2) rootDir
+    : Lokasi File typescript yang ingin dicompile
+
+    3) outDir
+    : Lokasi File javascript yang telah dicompile
+
+    4) removeComments
+    : Menghapus comment pada file javascript yang telah
+    dicompile
