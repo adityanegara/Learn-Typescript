@@ -1,0 +1,69 @@
+A) Pendahuluan
+    : Typescript menawarkan semua fitur javascript.
+    Ditambah dengan sistem type Typescript. 
+      Contohnya javascript menyediakan type data seperti string
+    dan number, tetapi javascript tidak mengcek secara
+    konsisten apakah kau menggunakannya dengan tepat atau tidak.
+    Typescript mengeceknya
+        Ini berarti code javascript yang telah anda tulis
+    juga merupakan code typescript. Keuntungannya dari typescript
+    ialah ia dapat menghighlight perilaku yang tidak terduga dari
+    code, menuruni resiko adanya bugs.
+
+B) Types by Inference
+    : Misal kita membuat variable pada file typescript
+    let helloWorld = "Hello World";
+    typescript akan mengcek type data dari valuenya kemudian
+    akan mengkonversinya menjadi
+    let helloWorld : string = "Hello World"
+
+C) Mendefinisikan Types
+    : Misal kita ingin nilai dari suatu variable merupakan
+    object dengan property name bertipe data string dan id
+    bertipe data number. maka dapat menggunakan interface
+
+    C.1) Syntax interface
+        : interface <Nama Interface>{
+            <Nama Property>: <Type data property>;
+            <Nama Property>: <Type data property>;
+            ...
+        }
+    
+    C.2) Contoh
+        : interface User {
+            name: string;
+            id: number
+        }
+
+    C.2) Penggunaan dalam variable
+        : const user: User = {
+            name: "Adit",
+            id: 0,
+        }
+
+D) Composing Types
+    : Dengan typescript anda dapat membuat types yang complex
+    dengan mengkombinasikan types yang sederhana. Ada dua cara untuk
+    melakukannya
+
+    D.1) Unions
+    : Dengan union anda dapat mendeklarasikan banyak types.
+
+        D.1.1) Contoh
+        : type MyBool = true | false;
+          type WindowStates = "open" | "closed" | "minimized";
+    
+    D.2) generics
+    : generic digunakan pada array untuk membatasi isi dari array
+        D.2.1) Contoh
+        : type StringArray = Array<string>;
+          type NumberArray = Array<number>;
+          type ObjectWithNameArray = Arrray<{name: string}>
+
+E) Structural Type System
+    :  Salah satu core principles dalam typescript ialah ia
+    mengcek apakah bentuk dari variable sesuai dengan typenya.
+    Dalam sistem structural jika dua object memiliki
+    bentuk yang sama maka diartikan sama.
+
+ 

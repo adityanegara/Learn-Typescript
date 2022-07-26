@@ -2,4 +2,6 @@
 2) Menginstall typescript secara global
     : npm install -g typescript
 3) Menjalankan typescript
-    : npx tsc
+    : npx tsc [nama file]
+4) Menjalankan Initialisasi
+   : npx tsc --init
