@@ -1,0 +1,20 @@
+A) Any
+: Dalam beberapa situasi, pendeklarasian type akan
+mengambil waktu yang sangat lama dan effort yang tinggi.
+Hal ini terjadi bila kita mendapatkan code yang ditulis
+bukan dengan typescript. Dalam kasus ini kita dapat menggunakan
+type any.
+
+B) Declare
+: Declare keyword dalam typescript digunakan untuk deklarasi
+variable atau method sektiar. Sama seperti import keyword. Ia
+memberitahu compiler bahwa sumber ada di file lain.
+
+    B.1) Kapan menggunakannya
+    : Gunakan declare ketika menggunakan 3rd party libraries
+    yang ditulis bukan dengan typescript. 
+
+    B.2) Syntax penulisan
+    : 1) declare var <nama variable>;
+      2) declare module <nama moduile>;
+     
