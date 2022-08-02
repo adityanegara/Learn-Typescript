@@ -36,3 +36,51 @@ D) Tuples
 
     D.2) Contoh Tuples
     let user: [number, string] = [1, 'Adit'];
+
+E) Enum 
+    : Mengizinkan anda mendefinisikan sekumpulan constant. 
+    bila tidak didefiniskan anggota enum maka akan diinisialisasi
+    0,1,2 dst. Dengan menambahkan const pada syntax enum. Membuat
+    hasil konversi javascript lebih teroptimasi.
+    
+    E.1) Syntax
+    :enum <nama enum menggunakan PascalCase> {<anggota enum menggunakan PascalCase>, ...}
+
+    E.2) Contoh tanpa definisi anggota.
+    :const enum Size {Small, Medium, Large}
+
+    E.2) Contoh definisi anggota
+    :const enum Size {Small =1, Medium, Large};
+
+    E.3) Penggunaan
+    : const test : Size = Size.Small;
+
+F) Function
+    : Pada typescript kita dapat mendeklarasikan type untuk function.
+    Bila type void maka tidak mengembalikan apapun. Pada typescript
+    semua perkondisian harus mengembalikan hasil yang sesuai.
+
+    F.1) Syntax
+    : const <nama function> = (<parameter>,...): <type> =>{//code}
+
+    F.2) Contoh
+    : const calculateGrade = (name: string, 
+                                math: number, 
+                                art: number, 
+                                language: number): string =>{}
+
+    F.3) Membuat parameter opsional
+    : gunakan ternary(?) pada parameter untuk membuat parameter opsional
+
+    F.4) Contoh parameter opsional
+    function calculateTax(income: number, taxYear?: number){
+
+    }
+
+    F.5) Membuat default value parameter
+    : isi dengan = <value> untuk mengisi defaultValue
+
+    F.6) Contoh default value
+    : function calculateTax(income: number, taxYear: 2022){
+
+    }

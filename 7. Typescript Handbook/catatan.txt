@@ -17,4 +17,15 @@ memberitahu compiler bahwa sumber ada di file lain.
     B.2) Syntax penulisan
     : 1) declare var <nama variable>;
       2) declare module <nama moduile>;
-     
+
+C) Enums
+  : Enums mengizinkan anda mendefinisikan sekumpulan constants. 
+  Menggunakan enums membuat lebih mudah mendokumentasikan intent,
+  atau membuat sekumpulan kasus yang berbeda.
+  
+  C.1) Numeric enum 
+  : incremental bila tidak didefinisikan
+
+  C.2) String enum
+  : Harus didefinisikan anggota-anggotanya
+

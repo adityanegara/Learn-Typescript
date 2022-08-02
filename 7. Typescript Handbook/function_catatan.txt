@@ -1,0 +1,24 @@
+D) Function
+  D.1) Generic Function
+  : Seringkali kita menulis function dimana types dari input.
+  Relate terhadap outputnya. contohnya
+
+  const firstElement = (arr:any[]) =>{
+    return arr[0];
+  }
+  
+  function ini bekerja dengan baik, tetapi memiliki return type
+  any. Lebih baik jika function ini mengembalikan type dari
+  element array.
+
+  Dalam TypeScript, generics digunakan ketika kita mendeskripsikan
+  hubungan antara dua nilai. 
+    D.1.1) Syntax
+    : const {nama function}<nama type>(arr: <nama type>): <nama type> | undefined {
+        ...
+    }
+
+    D.1.2) contohnya
+    const firstElement<Type>(arr: Type[]): Type | undefined{
+        return arr[0]
+    }
