@@ -84,3 +84,29 @@ F) Function
     : function calculateTax(income: number, taxYear: 2022){
 
     }
+
+G) Objects
+    : Pada javascript objek bersifat dinamik. Anda dapat
+    menambahkan property apapun pada object yang dibuat. 
+    Pada typescript kita dapat membuat type untuk object.
+
+    G.1) Syntax
+    const <nama objek>: {
+        <nama property>: <type>
+    }  = {
+        <nama property> : <value>
+    }
+
+    G.2) Contoh
+    let employee: {
+        readonly id: number,
+        name: string,
+        faxMachineCode?: string 
+    } = { id: 1, name: string}
+
+    G.3) Opsional property
+    : tambahkan ternary <?> pada property yang sifatnya optional
+
+    G.4) readonly
+    : tambahkan syntax readonly sebelum property untuk membuat 
+    property read only
