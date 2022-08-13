@@ -1,0 +1,85 @@
+A) Type Aliases
+    A.1) Permasalahan
+    : Mengisikan type dari sebuah object tanpa menggunakan type
+    Akan membuat kodingan kurang bagus. Bagaimana bila
+    anda ingin membuat objek dengan type yang sama. Anda harus
+    menuliskan typenya kembali.
+     
+    A.2) Solusi
+    : Dengan menggunakan Type Aliases kita dapat mengelompokkan
+    type dari sebuah object.
+
+    A.3) Syntax
+    : type <Nama Type> = {
+        <nama property>: <Type Property>,
+        ....
+    }
+
+    A.3) Contoh Inisialisasi
+    : type Student = {
+        readonly nim: number,
+        name: string,
+        dateOfBirth: Date,
+    }
+
+    A.4) Contoh Penggunaan
+    const aditStudent = {
+        nim: 165150200111021,
+        name: Aditya Negara
+        dateOfBirth: new Date();
+    }
+
+B) Union types
+    : Bila ktia ingin suatu variable memiliki dua atau lebih
+    opsi type maka gunakan union.
+
+    B.1) Syntax
+    : <nama variables> : <nama type 1> | <nama type 2> ...
+
+    B.1) Contoh Penggunaan
+    : const convertMilesToMeter = (miles: number | string): number =>{
+        if(typeof miles === "string"){
+             return parseInt(miles.match(/\d+/)[0]) * 1609.34
+        }else{
+            return miles  * 1609.34;
+        }
+    }
+
+C) Intersection
+    : Bila kita menginginkan suatu variable harus memiliki dua type
+
+    C.1) Syntax
+        : <nama variables> : <nama type 1> & <nama type 2> ...
+
+    C.2) Contoh Penggunaan
+        : type Move = {
+            moveUp: () => void,
+            moveDown: () => void,
+            moveLeft: () => void,
+            moveRight: () => void,
+        };
+
+        type Break = {
+            break: () => void
+        }
+
+
+        let vehicle: Move & Break = {
+            moveUp: () => console.log('move Up'),
+            moveDown: () => console.log('move Down'),
+            moveLeft: () => console.log('move Left'),
+            moveRight: () => console.log('move Right'),
+            break: () => console.log('break'),
+        }
+
+D) Literal
+    : Bila kita menginginkan value dari suatu variable 
+    hanya mengandung nilai tertentu. Contoh bila kita 
+    ingin membuat variable memiliki nilai hanya A,B,C,D,
+    dan F.
+
+    D.1) Syntax
+    <scope variables> <nama variables> : <literal types> = <value>
+
+    D.2) Contoh
+    const grades : 'A' | 'B' | 'C' | 'D' | 'F' = 'A';
