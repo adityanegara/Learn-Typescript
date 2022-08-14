@@ -1,0 +1,33 @@
+A) Menginstall library jest
+    : Jest ialah library untuk melakukan testing pada javascript
+    A.1) command
+        : npm install jest --save-dev
+
+B) Menginstall ts-jest
+    : ts-jest ialah library untuk menjembatani typescript dengan jest
+    B.1) Command
+        : npm install ts-jest --save-dev
+
+C) Menginstall type definitions untuk Jest
+    : @types/jest ialah library agar jest dapat mensupport types
+    C.1) Command
+    : npm install @types/jest --save-dev
+
+D) Mengexport function yang ingin di test
+    : export const test = (): string=>{
+        return 'Hello world!'
+    }
+E) Membuat file test dengan format [nama file].test.ts
+
+F) Mengimport function yang ingin di test 
+    import {test} from '../src/helloWorld.ts';
+
+G) Membuat config jest. dengan file jest.config.js
+    module.exports = {
+        transform: {'^.+\\.ts?$': 'ts-jest'},
+        testEnvironment: 'node',
+        testRegex: '/tests/.*\\.(test|spec)?\\.(ts|tsx)$',
+        moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+    };
+
+H) Jalankan command npx jest
