@@ -31,3 +31,4 @@ G) Membuat config jest. dengan file jest.config.js
     };
 
 H) Jalankan command npx jest
+test
