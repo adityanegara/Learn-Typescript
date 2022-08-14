@@ -44,3 +44,4 @@ const resisterColorDuo = (colors: Color[]): string => {
 console.log(resisterColorDuo([]));
 console.log(resisterColorDuo(['Brown', 'Green']));
 console.log(resisterColorDuo(['Black', 'Brown', 'Red']));
+export { };
