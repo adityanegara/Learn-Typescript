@@ -1,5 +1,5 @@
 type Color = 'Black' | 'Brown' | 'Red' | 'Orange' | 'Yellow' |
-    'Green' | 'Blue' | 'Violet' | 'Grey' | 'White';
+    'Green' | 'Blue' | 'Violet' | 'Gray' | 'White';
 
 const convertColorToNumber = (color: Color): string => {
     switch (color) {
@@ -19,7 +19,7 @@ const convertColorToNumber = (color: Color): string => {
             return '6';
         case 'Violet':
             return '7';
-        case 'Grey':
+        case 'Gray':
             return '8';
         default:
             return '9';
@@ -39,9 +39,4 @@ const resisterColorDuo = (colors: Color[]): string => {
         return returnValue;
     }
 }
-
-
-console.log(resisterColorDuo([]));
-console.log(resisterColorDuo(['Brown', 'Green']));
-console.log(resisterColorDuo(['Black', 'Brown', 'Red']));
-export { };
+export { resisterColorDuo };

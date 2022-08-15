@@ -1,28 +1,51 @@
 type Color = 'Black' | 'Brown' | 'Red' | 'Orange' | 'Yellow' | 'Green' | 'Blue' | 'Violet' | 'Grey' | 'White';
 
 const addUnit = (color: string, unitColor: Color): string => {
+    let returnValue = '';
     switch (unitColor) {
         case 'Black':
-            return `${color} ohms`;
+            returnValue = `${color} ohms`;
+            break;
         case 'Brown':
-            return `${color}0 ohms`;
+            returnValue = `${color}0 ohms`;
+            break;
         case 'Red':
-            return `${color}00 ohms`;
+            returnValue = `${color}00 ohms`;
+            break;
         case 'Orange':
-            return `${color} kiloohms`;
+            returnValue = `${color} kiloohms`;
+            break;
         case 'Yellow':
-            return `${color}0 kiloohms`;
+            returnValue = `${color}0 kiloohms`;
+            break;
         case 'Green':
-            return `${color}00 kiloohms`;
+            returnValue = `${color}00 kiloohms`;
+            break;
         case 'Blue':
-            return `${color} megaohms`;
+            returnValue = `${color} megaohms`;
+            break;
         case 'Violet':
-            return `${color}0 megaohms`;
+            returnValue = `${color}0 megaohms`;
+            break;
         case 'Grey':
-            return `${color}00 megaohms`;
+            returnValue = `${color}00 megaohms`;
+            break;
         default:
-            return `${color} gigaohms`;
+            returnValue = `${color} gigaohms`;
+            break;
     }
+    const numberOfZero: number = (returnValue.match(/0/g) || []).length; //logs 3
+    if (numberOfZero === 3) {
+        color = color.replaceAll('0', '');
+        returnValue = `${color} kiloohms`;
+    } else if (numberOfZero === 6) {
+        color = color.replaceAll('0', '');
+        returnValue = `${color} megaohms`;
+    } else if (numberOfZero === 3) {
+        color = color.replaceAll('0', '');
+        returnValue = `${color} gigaohms`;
+    }
+    return returnValue;
 }
 
 const convertColorToNumber = (color: Color): string => {
@@ -72,12 +95,4 @@ const resistorColorTrio = (colors: Color[]): string => {
     return returnValue;
 }
 
-
-
-console.log(resistorColorTrio([]));
-console.log(resistorColorTrio(['Brown', 'Green']));
-console.log(resistorColorTrio(['Orange', 'Orange', 'Black']));
-console.log(resistorColorTrio(['Orange', 'Orange', 'Red']));
-console.log(resistorColorTrio(['Orange', 'Orange', 'Orange']));
-
-export { };
+export { resistorColorTrio };
