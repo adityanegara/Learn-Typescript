@@ -83,3 +83,71 @@ D) Literal
 
     D.2) Contoh
     const grades : 'A' | 'B' | 'C' | 'D' | 'F' = 'A';
+
+F) Nullable
+    : Secara default typescript tidak mengizinkan menggunakan
+null atau undefined. Namun bila kita menginginkan sebuah variable
+bernilai null maka dapat diberikan type 'null'
+
+    F.1) Contoh
+    const greetWithUppercase = (name: string | null):void =>{
+        if(name){
+            console.log(`Hello ${name.toUpperCase()}`)
+        }else{
+            console.log('Hello')
+        }
+    }
+
+G) Optional Chaining
+    : Ketika mengerjakan variable yang nullable. Kita harus
+    melakukan null check. Yaitu mengecek apakah variable null atau tidak
+
+    G.1) Contoh
+    : type Customer = {
+            birthday: Date
+      };
+        const getCustomer = (id: number): Customer | null => {
+            return (id === 0) ? null : { birthday: new Date() };
+        }
+        let customer = getCustomer(0);
+        if(customer){
+            console.log(customer.birthday)
+        }
+
+    G.2) Permasalahan
+        : Penulisan if(customer){console.log(customer.birthday)}
+        terlalu panjang. 
+
+    G.3) Solusi
+        : Dapat disingkat dengan optional chaining
+        menjadi console.log(customer?.birthday);
+
+H) Nullish Coalscing Operator
+    : Nilai nilai falsy ialah sebagai berikut
+     (false, null, undefined, 0, '). Tapi bagaimana bila kita
+     ingin 0 menjadi nilai yang valid?
+
+     H.1) Contoh
+     let speed: number | null = null;
+     let ride = {
+        speed: (speed !== null || speed !== undefined) ? speed : 30
+     }
+
+     H.2) Permasalahan
+    : syntax  speed: (speed !== null || speed !== undefined) terlalu panjang 
+
+      H.3) Solusi
+      : speed ?? 30. Yang berarti bila nilai speed bukan null atau
+      undefined maka isilah speed. Bila ya maka 30.
+
+I) Type Assertions
+    : Terkadang kita mengetahui type daripada typescript.
+
+    I.1) Contoh 
+    : let phone = document.getElementById('phone-input');
+
+    Pada contoh diatas phone memiliki type HTMLElement atau
+    null. Tetapi kita menginginkan phone merupakan 
+    HTMLinputElement. maka dapat kita buat
+
+    let phone = document.getElementById('phone-input') as HTMLInputElement;
