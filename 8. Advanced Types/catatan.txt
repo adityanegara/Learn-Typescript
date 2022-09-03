@@ -151,3 +151,34 @@ I) Type Assertions
     HTMLinputElement. maka dapat kita buat
 
     let phone = document.getElementById('phone-input') as HTMLInputElement;
+
+J) Unknown types
+    : Kita harus menghindari penggunaan type any dalam syntax typescript. Tetapi misalnya kita harus
+    mengonversi kode javascript menjadi typescript dan ada situasi dimana kita harus menggunakan type any.
+
+    J.1) Contoh
+    const render = (document: any) =>{
+        document.whatEverWeWant();
+    }
+
+    Pada function diatas ketika type dari document any. Kita dapt memanggil function apapun dalam
+    document, meskipun function tersebut tidak ada.
+
+    J.2) Solusi
+    : Gunakanlah type unknown untuk memaksa kita menggunakan type checking dalam program kita
+
+        const render = (document: unknown) =>{
+            if(typeof document === 'string'){
+                document.toUpperCase();
+            }
+           
+        }
+
+K) Never Type  
+    : Misal kita memiliki function yang akan membuat syntax setelahnya tidak dieksekusi. Seperti infinite loop, atau
+    throw error. Kita dapat menggunakan type never agar compiler mengetahui syntax dibawahnya tidak dijalankan
+
+    K.1) Contoh
+    const throwError = (message:string):never =>{
+        throw new Error(message);
+    } 
