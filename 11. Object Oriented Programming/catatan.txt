@@ -98,3 +98,65 @@ F) Parameter property
             public name: string,
         )
     }
+
+G) Getter dan Setter
+    : Getter ialah method untuk mengambil sebuah value dalam suatu class. Setter ialah method
+    untuk mengubah nilai sebuah value dalam sebuah class. Dalam typescript kita dapat menggunakan
+    property 'get' dan 'set' pada sebuah method agar method tersebut dapat bertingkah seperti property
+
+    G.1) Syntax
+    : get/set <nama method>: <type pengembalian>{}
+
+    G.2) Contoh
+    :  class Person {
+        cosntructor(
+            private readonly _id:number,
+            private _name: string,
+        )
+        get name(): string{
+            return this._name;
+        }
+        set name(value:string){
+            this._name = value;
+        }
+    }
+
+    G.3) Penggunaan
+    : const person = new Person(1, 'adit');
+      person.name = 'adit edit';
+      console.log(person.name);
+
+H) Index Signatures
+    H.1) Permasalahan
+    : Pada javascript kita dapat membuat objek dan mengassign property setelahnya. Dalam typescript
+    hal ini tidak diizinkan karena typescript sangat ketat dengan bentuk objek. Namun bagaimana
+    bila kita ingin membuat property secara dynamic? Kita dapat menggunakan index signatures
+
+    H.2) Syntax
+    : [<nama property>: <type dari propertynya>] : <type dari valuenya>
+
+    H.3) Contoh
+    : class SeatAssignment {
+        [seatNumber: string] : string;
+    }
+
+    H.4) Penggunaan 
+    : const seats = new SeatAssignment();
+    seats.A1 = 'Adit';
+    seats.A2 = 'Aura';
+    seats.A3 = 'Ayesha';
+
+I) Static Members
+    : property static mengizinkan nilai setelahnya dimiliki oleh class tersebut. 
+
+    I.1) Syntax
+    : static <nama method>/<nama property>
+
+    I.2) Contoh
+    : class Person {
+        private static _age:number;
+        
+        static get age():number{
+            return Person._age;
+        }
+      }

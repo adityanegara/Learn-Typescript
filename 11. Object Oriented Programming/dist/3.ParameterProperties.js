@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Account = void 0;
 class Account {
-    constructor(id, owner, balance) {
+    constructor(id, owner, _balance) {
         this.id = id;
         this.owner = owner;
-        this._balance = balance;
+        this._balance = _balance;
     }
     getBalance() {
         return this._balance;

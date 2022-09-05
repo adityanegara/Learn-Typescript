@@ -2,13 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Account = void 0;
 class Account {
-    constructor(id, owner, balance) {
+    constructor(id, owner, _balance) {
         this.id = id;
         this.owner = owner;
-        this._balance = balance;
+        this._balance = _balance;
     }
-    getBalance() {
+    get balance() {
+        console.log('getting balance');
         return this._balance;
+    }
+    set balance(value) {
+        console.log('setting balance');
+        this._balance = value;
     }
     deposit(amount) {
         if (amount < 0)
@@ -24,3 +29,6 @@ class Account {
     }
 }
 exports.Account = Account;
+const account = new Account(1, 'Aditya Negara', 0);
+account.balance = 100;
+console.log(account.balance);
