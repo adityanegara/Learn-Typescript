@@ -43,3 +43,58 @@ C) Membuat Object
 
         C.3.2) Contoh
         : account instanceof Account
+
+D) Read only and Optional property
+    D.1) Read only
+    : Bila kau ingin property pada suatu class hanya dapat diinisialisasi pada constructor dan tidak dapat diubah.
+    gunakan 'readonly.
+
+    D.2) Optional
+    : Bila kau ingin property pada suatu class bersifat opsional. Bisa ada atau tiada gunakan '?'.
+
+    D.3) Contoh
+    : class test {
+        readonly id: number;
+        nickName?: string
+        ////
+    }
+
+E) Access Control Keyword
+    : Dalam typescript kita memiliki modifier untuk mengontrol akses pada properties dan method.
+
+    E.1) Macam-macam access control modifier
+        : 1) Public
+            : Dapat diakses atau diubah nilainya diluar dari class
+          2) Private
+            : Hanya dapat diakses atau diubah nilainya didalam  class
+          3) Protected
+            : Hanya dapat diakses atau diubah  nilainya dalam class atau subclass
+
+    E.2) Syntax
+        : <access modifier> <nama variables>/<nama function>;
+    
+    E.3) Contoh
+        : private _balance;
+
+F) Parameter property
+    : Terdapat jalan lain dalam menuliskan property pada class. Kita dapat menuliskannya
+    dalam parameter constructor
+
+    F.1) Cara biasa
+    : class Person {
+        public name: string;
+        readonly private _id: number;
+
+        constructor(name: string, _id: number){
+            this.name = name;
+            this._id = _id;
+        }
+    }
+
+    F.2) Cara Parameter property
+    : class Person {
+        cosntructor(
+            private readonly id:number,
+            public name: string,
+        )
+    }
