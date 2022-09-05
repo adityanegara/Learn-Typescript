@@ -1,0 +1,45 @@
+A) Apa itu object oriented programming?
+    : Object oriented programming adalah salah satu dari paradigma programming dimana
+    object ialah hal yang membangun aplikasi kita.
+
+    A.1) Object
+    : Object ialah suatu unit yang memiliki data yang disebut properties. dan operasi yang disebut method.
+
+    A.2) Contoh
+    : Object person memiliki properties name, email, dan adderss dan memiliki method talk(), dance(), dan walk()
+
+B) Classes pada typescript
+    : Class adalah blueprint untuk membuat objek
+
+    B.1) Contoh
+    :  class bank account  memiliki property id, owner, dan balance. Ia juga
+    membuat method deposit(), dan withdraw()
+
+    B.2) Constructor
+    : Method yang dijalankan pertama kali ketika suatu object dibuat. Biasanya digunakan
+    untuk menginisialisasi nilai.
+
+    B.3) Syntax
+    class <Nama class dengan Pascal naming>{
+        <nama property>: <type property>
+        ...
+        constructor(){}
+        <method>
+        ...
+    }
+
+C) Membuat Object
+    C.1) Syntax
+    : <modifier variable> <nama objek> = new <nama class>(<parameter>)
+
+    C.2) Contoh
+    : const account = new Account(1, 'Aditya Negara', 0);
+
+    C.3) instanceof
+    : Jika ingin mengencek apakah suatu objek ialah hasil class tertentu. Gunakan instanceof
+
+        C.3.1) Syntax
+        : <variables> instanceof <class>
+
+        C.3.2) Contoh
+        : account instanceof Account
