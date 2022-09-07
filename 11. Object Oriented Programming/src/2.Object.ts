@@ -5,3 +5,5 @@ account.deposit(100);
 
 console.log(account.getBalance());
 console.log(account instanceof Account);
+
+export { }

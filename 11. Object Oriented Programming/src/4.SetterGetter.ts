@@ -36,3 +36,5 @@ export class Account {
 const account = new Account(1, 'Aditya Negara', 0);
 account.balance = 100;
 console.log(account.balance);
+
+export { }

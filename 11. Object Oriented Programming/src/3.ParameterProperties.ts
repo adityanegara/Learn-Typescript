@@ -25,3 +25,5 @@ export class Account {
         console.log(`Withdrawing : ${amount}. Your current balance is ${this._balance}`)
     }
 }
+
+export { }

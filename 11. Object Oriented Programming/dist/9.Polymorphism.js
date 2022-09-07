@@ -21,6 +21,7 @@ class Student extends People {
         this.studentId = studentId;
     }
     learning() {
+        this.talk();
         console.log('learning');
     }
 }

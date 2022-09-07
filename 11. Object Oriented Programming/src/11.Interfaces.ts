@@ -21,3 +21,5 @@ class Professor implements Teacher {
     }
 
 }
+
+export { }

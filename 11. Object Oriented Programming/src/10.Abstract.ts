@@ -26,3 +26,5 @@ class Circle extends Shape {
         console.log('rendering circle')
     }
 }
+
+export { }
