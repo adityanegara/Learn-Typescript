@@ -1,0 +1,57 @@
+A) Generic Class
+    A.1) Permasalahan
+    : Misal anda ingin membuat class dimana constructornya memiliki type string atau number. Anda biasanya
+    membuat typenya seperti ingin
+
+        public id : string | number;
+
+    Tetapi hal tersebut berakibat ketika membuat suatu objek kita harus melihat kembali classnya untuk
+    mengetahui type dari class tersebut. Dan bagaimana bila kita menginginkan id mengizinkan boolean?
+    maka kita harus mengubah typenya kembali
+
+        public id : string | number | boolean;
+    
+    Dari permasalahan tersebut generic mengizinkan object untuk mendefinisikan type dari suatu propertynya sendiri
+
+    A.2) Syntax
+    class {nama class} <{nama generic}, ....> {
+        constructor({nama parameter 1}: {generic}, ...)
+    }
+
+    A.3) Contoh
+    class Employee<I>{
+        constructor(public id: I, public name: string){}
+    }
+
+    A.4) Contoh penggunaan
+    : const employee = new Employee<string>('123', 'adit');
+
+B) Generic Function
+    : Sama seperti classes. generic function mengizinkan pemanggil function dapat menentukan
+    type dari parameter function tersebut.
+    
+    B.1) Syntax normal function
+    : function {nama function}<nama generic, ....>({parameter}: {nama generic}, ....){
+        ....
+    }
+
+    B.2) Syntax arrow function
+    : const {nama function} = <nama generic, ....>({parameter}: {nama generic}, ....) =>{
+        ....
+    }
+
+    B.3) Contoh Normal Function
+    : function wrapInArray<T>(value: T) =>{
+        return [value];
+    }
+    
+    B.4) Contoh Arrow Function
+    : const wrapInArray = <T>(value: T) => {
+         return [value];
+    }
+
+   
+
+    B.5) Contoh penggunaan
+    : wrapInArray<string>('adit');
+      wrapInArray<number>(1);
