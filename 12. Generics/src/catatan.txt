@@ -112,4 +112,29 @@ E) Extending Generic Classes
                 return []
             }
         }
+
+F) Type Mapping
+    F.1) Permasalahan
+    : Terkadang kita harus membuat type yang didasari oleh type lainnya. Hal ini disebut type mapping.
+    Misal kita ingin membuat type yang sama tetapi memiliki semua property readonly. Hal ini membuat
+    code kita memiliki duplikasi.
+
+    type User = {
+        id: number;
+        name: string;
+    }
+
+    type ReadOnlyUser  = {
+        readonly id: number;
+        readonly name: string;
+    }
+
+    F.2) Solusi
+    : gunakanlah 'index signature','keyof', dan 'generic' untuk membuat type baru.
+
+        type ReadOnly<T> = {
+            [K in keyof T]: T[K]
+        }
+        
+
  
