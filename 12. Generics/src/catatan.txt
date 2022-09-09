@@ -50,8 +50,66 @@ B) Generic Function
          return [value];
     }
 
-   
-
     B.5) Contoh penggunaan
     : wrapInArray<string>('adit');
       wrapInArray<number>(1);
+
+C) Generic Interfaces
+    C.1) Syntax
+    : interface {nama interface}<{nama generic}>{
+        {nama property}: {type},
+        ....
+        }
+
+    C.2) Contoh
+    : interface Result<T>{
+        data: T| null,
+        error: string|null
+    }
+
+D) Generic Constraints
+    : Anda dapat membatasi type yang masuk dalam generic
+
+    D.1) Contoh
+    : const echo = <T extends number|string>(value: T): T =>{
+        return value;
+    }
+
+E) Extending Generic Classes
+    E.1) Mengirim generic ke parent
+        E.1.1) Syntax
+        : class {nama class}<{nama generic}> extends {nama class parent}<nama generic>{
+            ...
+        }
+
+        E.1.2) Contoh
+        : class CompressibleStore<T> extends Store<T>{
+            compress() { }
+        }
+
+    E.2) Membatasi generic 
+        E.2.1) Syntax
+        : class {nama class}<{nama generic} extends {type}> extends {nama class parent}<nama generic>{
+            ...
+        }
+
+        E.2.2) Contoh
+        : class SearchableStore<T extends { name: string }> extends Store<T>{
+            find(name: string): T | undefined {
+                return this._objects.find(obj => obj.name === name);
+            }
+        }
+
+    E.3) Mendefinisikan generic
+        E.3.1) Syntax
+        : class {nama class} extends {nama class parent}<type>{
+            ...
+        }
+
+        E.3.2) Contoh
+        : class ProductStore extends Store<Product>{
+            filterByCategory(category: string): Product[] {
+                return []
+            }
+        }
+ 
