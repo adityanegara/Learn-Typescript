@@ -7,7 +7,7 @@ export class Clock {
         this._calculate(this._hours, this._minutes);
     }
 
-    private _calculate(hours: number, minutes: number) {
+    private _calculate(hours: number, minutes: number): void {
         const hoursInMinutes = hours * this.NUMBER_OF_MINUTES_IN_HOUR;
         const totalMinutes = hoursInMinutes + minutes;
         let remainOfMinutesInADay = totalMinutes % this.NUMBER_OF_MINUTES_IN_A_DAY;
@@ -26,5 +26,23 @@ export class Clock {
         return `${hoursFormat}:${minutesFormat}`
     }
 
+    plus(minutes: number): Clock {
+        let clock = new Clock(this._hours, (this._minutes) ? this._minutes + minutes : minutes);
+        return clock;
+    }
+
+    minus(minutes: number): Clock {
+        const minute = (this._minutes) ? this._minutes - minutes : -minutes;
+        let clock = new Clock(this._hours, minute);
+        return clock;
+    }
+
+    equals(clock: Clock): boolean {
+        if (clock.toString() === this.toString()) {
+            return true;
+        }
+        return false;
+
+    }
 
 }
