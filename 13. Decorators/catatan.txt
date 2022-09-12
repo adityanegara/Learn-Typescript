@@ -1,0 +1,58 @@
+A) Apa itu decorators
+    : decorator adalah attribut yang kita terapkan pada class. Dengan ini kita dapat mengubah
+    perilaku class tersebut. 
+
+    A.1) Mengizinkan decorators
+    : pada file tsconfig.json ubah/uncomment
+      "experimentalDecorators": true,
+
+B) Class Decorators
+    B.1) Syntax
+    : function <nama function dengan pascal convention>(<parameter>: <type parameter>){
+        ...
+    }
+
+    B.2) Contoh 
+    :function Component(constructor: Function) {
+        console.log('Component decorator called');
+        constructor.prototype.uniqueId = Date.now();
+        constructor.prototype.insertInDOM = () => {
+            console.log('Inserting component in the DOM')
+        }
+    }
+
+    B.3) Syntax Penggunaan
+    : @<nama decorator>
+        ....
+
+    B.4) Contoh Penggunaan
+    : @Component
+        class ProfileComponent {
+
+        }
+
+C) Parameter pada decorator
+    : Cara menambah parameter pada decorator ialah dengan membuat decorator factory. Decorator factory
+    ialah decorator yang mengembalikan decorator.
+
+    C.1) Syntax
+    : function <nama decorator factory pascal naming>(<parameter>: <type parameter>){
+        return (<parameter>: <type parameter>) =>{
+            //code
+        }
+    }
+
+    C.2) Contoh
+    : function Component(options: string) {
+        return (constructor: Function) => {
+            console.log('Component decorator called');
+            constructor.prototype.options = options;
+            constructor.prototype.uniqueId = Date.now();
+            constructor.prototype.insertInDOM = () => {
+                console.log('Inserting component in the DOM')
+            }
+        }
+    }
+
+    C.3) Contoh Penggunaan
+    : @Component({ selector: '#nav-button' })
