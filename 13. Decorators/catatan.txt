@@ -56,3 +56,54 @@ C) Parameter pada decorator
 
     C.3) Contoh Penggunaan
     : @Component({ selector: '#nav-button' })
+
+
+D) Method Decorators
+    D.1) Syntax
+    : function <nama function decorator Pascal Naming>(
+        <objek yang memiliki target method>: any,
+        <nama dari target method>:string,
+        <nama dari descriptior objek>: PropertyDescriptor
+    ){
+        //isi method
+    }
+
+    D.2) Contoh
+    : function Log(target: any, methodName: string, descriptior: PropertyDescriptor){}
+
+    D.3) Penggunaan
+    : class <nama class>{
+          @<nama function decorator>
+      <function>
+
+    }
+      
+    D.4) Contoh Penggunaan
+    : class Person {
+        @Log
+        say(message: string) {
+            console.log(`Person sasy ${message}`);
+        }
+    }
+
+E) Accessor Decorator
+    E.1) Syntax
+    :  function <nama function decorator Pascal Naming>(
+        <objek yang memiliki target method>: any,
+        <nama dari target method>:string,
+        <nama dari descriptior objek>: PropertyDescriptor
+    ){
+     //
+    }
+
+    E.2) Contoh 
+    : function Capitalize(target: any, methodName: string, descriptor: PropertyDescriptor) {
+        const original = descriptor.get;
+        descriptor.get = function () {
+            const result = original?.call(this);
+            return (typeof result === 'string') ? result.toUpperCase() : result;
+        }
+    }
+
+F) Property decorators
+    : 

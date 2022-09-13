@@ -6,15 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-function Component(constructor) {
-    console.log('Component decorator called');
-    constructor.prototype.uniqueId = Date.now();
-    constructor.prototype.insertInDOM = () => {
-        console.log('Inserting component in the DOM');
+function Log(target, methodName, descriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (...args) {
+        console.log('Before');
+        original.call(this, ...args);
+        console.log('After');
     };
 }
-let ProfileComponent = class ProfileComponent {
-};
-ProfileComponent = __decorate([
-    Component
-], ProfileComponent);
+class Person {
+    say(message) {
+        console.log(`Person sasy ${message}`);
+    }
+}
+__decorate([
+    Log
+], Person.prototype, "say", null);
