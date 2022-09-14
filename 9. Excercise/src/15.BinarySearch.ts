@@ -20,19 +20,24 @@ const mapArrayWithIndex = (array: number[]) => {
     return test;
 }
 
-export const find = (array: number[], searchValue: number): number | never => {
-    let middle = Math.floor(array.length / 2);
-    if (array[middle] === searchValue) {
-        console.log(`found ${middle}`);
-        return middle;
-    } if (array[middle] < searchValue) {
-        const secondHalf = array.splice(-middle);
-        console.log(secondHalf);
-        return find(secondHalf, searchValue);
-    } if (array[middle] > searchValue) {
-        const firstHalf = array.splice(0, middle);
-        return find(firstHalf, searchValue);
+interface BinarySearchParams {
+    array: number[],
+    serachValue: number,
+    low: number,
+    high: number
+}
+
+export const find = (array: number[] | BinarySearchParams, searchValue: number): number | never => {
+    if ('low' in array === false) {
+        const test = {
+            array: array,
+            serachValue: searchValue,
+            low: 0,
+            high: 1,
+        }
+        console.log(test);
     }
-    throw new Error('Value not in array');
+
+    return 1;
 }
 
