@@ -9,17 +9,6 @@
 //potong array dari kanan sampai tengah dan ulangi proses 1
 //5) Lakukan pengecekan pada poin 2 sampai nilai ditemukan atau
 //interval kosong
-
-const mapArrayWithIndex = (array: number[]) => {
-    let test = array.map((n, i) => {
-        return {
-            index: i,
-            value: n,
-        }
-    })
-    return test;
-}
-
 interface BinarySearchParams {
     array: number[],
     serachValue: number,
@@ -27,17 +16,45 @@ interface BinarySearchParams {
     high: number
 }
 
-export const find = (array: number[] | BinarySearchParams, searchValue: number): number | never => {
-    if ('low' in array === false) {
-        const test = {
-            array: array,
-            serachValue: searchValue,
-            low: 0,
-            high: 1,
-        }
-        console.log(test);
-    }
 
-    return 1;
+
+const binarySearch = (binarySearchParams: BinarySearchParams): number => {
+    if (binarySearchParams.high >= binarySearchParams.low) {
+        const mid: number = binarySearchParams.low + Math.floor((binarySearchParams.high - binarySearchParams.low) / 2);
+        if (binarySearchParams.array[mid] == binarySearchParams.serachValue) {
+            return mid;
+        } if (binarySearchParams.array[mid] > binarySearchParams.serachValue) {
+            return binarySearch({
+                array: binarySearchParams.array,
+                serachValue: binarySearchParams.serachValue,
+                low: binarySearchParams.low,
+                high: mid - 1,
+            })
+        } if (binarySearchParams.array[mid] < binarySearchParams.serachValue) {
+            return binarySearch({
+                array: binarySearchParams.array,
+                serachValue: binarySearchParams.serachValue,
+                low: mid + 1,
+                high: binarySearchParams.high
+            })
+        }
+    }
+    return -1;
 }
 
+
+
+export const find = (array: number[], searchValue: number): number | never => {
+    const high: number = array.length - 1;
+    const params: BinarySearchParams = {
+        array: [...array as number[]],
+        serachValue: searchValue,
+        low: 0,
+        high,
+    }
+    const searchResult = binarySearch(params);
+    if (searchResult < 0) {
+        throw new Error('Value not in array')
+    }
+    return searchResult;
+}
