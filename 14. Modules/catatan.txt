@@ -1,0 +1,34 @@
+A) Import Export Modules
+    A.1) Syntax export
+    : export <nama class/nama function>
+
+    A.2) Contoh export
+    : export class Person{
+        constructor(private name: string){}
+    }
+
+    A.3) Syntax Import
+    : import { <nama class/function> } from '<relative path>'
+
+    A.4) Contoh Import
+    : import { Person } from './person.ts';
+
+B) Default Export
+    : Bila hanya terdapat satu class/function yang ingin di
+    export. Kita dapat gunakan default 
+    B.1) Syntax Export
+    : export default <nama class/function>
+
+    B.2) Contoh Default Export
+    : export default class Person{
+        constructor(private _name: string){}
+    }
+
+    B.3) Syntax default import
+    : import <nama class/function> from '<relative path>';
+
+    B.4) Contoh default import
+    : import Person from './person.ts' 
+
+    
+
