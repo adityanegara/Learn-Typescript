@@ -1,0 +1,58 @@
+A) Memasukan code JS pada project Typescript
+    : 1) Pada tsconfig.json ubah property "allowJs" ubah nilainya menjadi true.
+      2) Pastikan pada tsconfig.json property "module" berinilai "commonjs".
+
+B) Type checking JS Code
+    B.1) Permasalahan
+    : Dengan menggunakan code javascript tidak adanya type checking. Hal ini dapat mengakibatkan
+    terjadinya bug ketika runtime.
+
+    B.2) Konfigurasi tsconfig.json
+    : Pada property "checkJs" pastikan nilainya true. Dengan melakukan ini intellisense akan
+    mendeteksi syntax javascript yang memungkinkan menghasilkan bug.
+
+    B.3) Cara mematikan deteksi
+    : Diatas syntax JS yang memungkinkan menghasilkan bug masukan komen.
+    // @ts-nocheck
+
+C) Mendeskripsikan types menggunakan JSDoc
+    : JSDoc ialah comment special yang ditaruh diatas function javascript 
+    untuk memberikan type checking pada function.
+
+    C.1) Format
+    : /**
+        * <Deskripsi Function>.
+        * @param {<type dari parameter>} <nama dari parameter> - <Penjelasan dari parameter>.
+        * @returns {<kembalian dari function>}
+      */
+
+    C.2) Contoh
+    : /**
+        * Calculating income tax.
+        * @param {number} income - Net salary after expenses.
+        * @param {string} name - Employee name.
+        * @returns {number}
+      */
+
+D) Menggunakan Declaration Files
+    : Declaration files ialah files yang berfungsi mendeklarasi isi dari 
+    file yang dideklarasi.
+    
+    D.1) Langkah
+    : 1) Membuat file <nama file yang akan di deklarasi>.d.ts
+      2) Membuat function deklarasi
+        : export declare function calculateTax(income:number):number
+
+E) Menggunakan typescript dengan library lain
+  E.1) Permasalahan
+  : Terkadang kita membutuhkan library lain untuk membangun aplikasi kita. Tidak 
+  memungkiri bahwa library tersebut tidak ditulis dengan typescript atau tidak ada
+  file type declaration. Maka dari itu kita harus menginstall type declarationnya dari
+  package @types.
+
+  E.2) Format 
+  : npm install @types/<nama library> --save-dev
+  
+  E.3) Contoh
+  : npm install @types/lodash --save-dev
+  
