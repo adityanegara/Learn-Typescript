@@ -7,7 +7,7 @@ const noteInput = document.getElementById('note-form__input');
 const submitNoteButton = document.querySelector('.note-form');
 const warningText = document.querySelector('.warning-text');
 const noteListElement = document.querySelector('.note-list');
-const noteList = [];
+let noteList = [];
 const showElement = (element) => {
     element.classList.remove('display-none');
     element.classList.add('display-visible');
@@ -27,6 +27,13 @@ const editNote = (id) => {
 };
 const deleteNote = (id) => {
     console.log(`deleting ${id}`);
+    const filteredNotes = noteList.filter((note) => {
+        if (note.id !== id) {
+            return note;
+        }
+    });
+    noteList = filteredNotes;
+    renderNoteList();
 };
 const createDeleteButton = (buttonId) => {
     const deleteButton = document.createElement('button');

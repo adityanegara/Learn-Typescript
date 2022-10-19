@@ -7,7 +7,7 @@ const noteInput = document.getElementById('note-form__input') as HTMLInputElemen
 const submitNoteButton = document.querySelector('.note-form') as HTMLFormElement;
 const warningText = document.querySelector('.warning-text') as HTMLElement;
 const noteListElement = document.querySelector('.note-list') as HTMLUListElement;
-const noteList : Note[] = [];
+let noteList : Note[] = [];
 
 const showElement = (element: HTMLElement):void =>{
     element.classList.remove('display-none');
@@ -32,7 +32,11 @@ const editNote = (id:number):void =>{
 }
 
 const deleteNote = (id:number):void =>{
-    console.log(`deleting ${id}`);
+    const filteredNotes = noteList.filter((note) =>{ 
+        if(note.id !== id){return note}
+    });
+    noteList = filteredNotes;
+    renderNoteList();
 }
 
 const createDeleteButton = (buttonId:number):HTMLButtonElement=>{
