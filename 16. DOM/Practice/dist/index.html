@@ -9,9 +9,14 @@
 </head>
 <body>
     <form class="note-form">
-        <input id="note-form__input" type="text"/>
-        <button id="note-form__submit__button" class="button primary-button" type="submit">Create</button>
+        <div class="container">
+            <input placeholder="Note..." id="note-form__input" type="text"/>
+            <button class="button primary-button" type="submit">Create</button>
+        </div>
+       
+        <small class="warning-text display-none">Note cannot be empty!</small>
     </form>
+    
     <ul class="note-list">
         <li class="note">
             <p class="note-text">This is a note</p>
