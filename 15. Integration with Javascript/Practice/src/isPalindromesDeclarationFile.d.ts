@@ -1,0 +1,1 @@
+export declare function isPalindromesDeclarationFile(text:string):boolean;
