@@ -23,12 +23,34 @@ const createNewNote = (noteList: Note[], noteInput: HTMLInputElement): Note =>{
     return {
         id:  (noteList.length == 0) ? 0 : noteList[noteList.length -1].id+1,
         text:  noteInput.value,
+        isDone: false,
     }
 }
 
+const undoneNote = (id: number):void =>{
+    const undoneNote = noteList.map(note => {
+        if(note.id == id){
+            return {...note, isDone: false}
+        }else{
+            return note;
+        }
+           
+    });
+    noteList = undoneNote;
+    renderNoteList();
+}
 
-const editNote = (id:number):void =>{
-    console.log(`editing ${id}`);
+const doneNote = (id: number):void =>{
+    const doneedNote = noteList.map(note => {
+        if(note.id == id){
+            return {...note, isDone: true}
+        }else{
+            return note;
+        }
+           
+    });
+    noteList = doneedNote;
+    renderNoteList();
 }
 
 const deleteNote = (id:number):void =>{
@@ -44,21 +66,33 @@ const createDeleteButton = (buttonId:number):HTMLButtonElement=>{
     deleteButton.classList.add('button');
     deleteButton.classList.add('secondary-button');
     deleteButton.innerHTML = 'Delete';
-    deleteButton.addEventListener('click', (e)=>{
+    deleteButton.addEventListener('click', ()=>{
         deleteNote(buttonId);
     })
     return deleteButton;
 }
 
-const createEditButton = (buttonId:number):HTMLButtonElement =>{
-    const editButton:HTMLButtonElement = document.createElement('button');
-    editButton.classList.add('button');
-    editButton.classList.add('primary-button');
-    editButton.innerHTML = 'Edit';
-    editButton.addEventListener('click', (e)=>{
-       editNote(buttonId);
+const createUndoneButton = (id: number):HTMLButtonElement =>{
+    const doneButton:HTMLButtonElement = document.createElement('button');
+    doneButton.classList.add('button');
+    doneButton.classList.add('primary-button');
+    doneButton.innerHTML = 'Undone';
+    doneButton.addEventListener('click', ()=>{
+       undoneNote(id);
     })
-    return editButton;
+    return doneButton;
+}
+
+
+const createDoneButton = (id: number):HTMLButtonElement =>{
+    const doneButton:HTMLButtonElement = document.createElement('button');
+    doneButton.classList.add('button');
+    doneButton.classList.add('primary-button');
+    doneButton.innerHTML = 'Done';
+    doneButton.addEventListener('click', ()=>{
+       doneNote(id);
+    })
+    return doneButton;
 }
 
 const createNoteText = (text:string):HTMLElement =>{
@@ -73,7 +107,11 @@ const createNote = (newNote: Note):HTMLElement =>{
     note.classList.add('note');
     const buttonGroups = document.createElement('div');
     buttonGroups.classList.add('note-buttons');
-    buttonGroups.append(createEditButton(newNote.id));
+    if(newNote.isDone){
+        buttonGroups.append(createUndoneButton(newNote.id));
+    }else{
+        buttonGroups.append(createDoneButton(newNote.id));
+    }
     buttonGroups.append(createDeleteButton(newNote.id));
     note.append(createNoteText(newNote.text));
     note.append(buttonGroups);
