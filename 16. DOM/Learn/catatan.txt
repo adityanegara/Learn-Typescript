@@ -1,0 +1,33 @@
+A) Memberi tanda !
+    A.1) Permasalahan
+    : Typescript tidak mengetahui apakah element yang kita
+    query ada atau tidak. 
+
+    A.2) Solusi
+    : Dengan menambahkan tanda '!' pada akhir pengambilan query.
+    Kita memberitahu typescript bahwa element ini pasti ada.
+
+    A.3) Syntax
+    : <scope variable> <nama variable> = <query DOM>!;
+
+    A.4) Contoh
+    : const anchor = document.querySelector('a')!;
+
+B) Type casting DOM
+    B.1) Permasalahan
+    : Terkadang query DOM yang kita buat menggunakan class atau ID.
+    Hal ini akan membuat intellisense tidak mengetahui type dari
+    DOM yang kita query. Sehingga tidak adanya rekomendasi function/
+    atribut pada dom yang kita ambil tersebut.
+
+    B.2) Solusi
+    : Dengan menggunakan type casting kita dapat memberitahu 
+    typescript type dari DOM yang kita cari.
+
+    B.3) Syntax
+    : <scope variable> <nama variable> = <query DOM> as <DOM type>
+
+    B.4) Contoh
+    : const form = document.querySelector('.new-item-form') as HTMLFormElement;
+    
+
