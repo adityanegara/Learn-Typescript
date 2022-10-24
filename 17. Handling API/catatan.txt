@@ -1,0 +1,60 @@
+A) Package yang digunakan
+    A.1) node-fetch
+    : Package yang mengizinkan node js dapat mengimplementasikan fetch API.
+
+    A.2) @types/node-fetch
+    : Type definitions untuk package node-fetch. 
+
+    A.3) ts-node
+    : mesin eksekusi typescript untuk Node.js. Mengizinkan anda 
+    langsung mengeksekusi typescript pada node js tanpa mengkompilasinya dulu. 
+
+B) Setting environment
+    B.1) package.json
+    : tambahkan property "type" dengan value "module"
+
+    B.2) tsconfig.json
+    : pada property "module" ubah dengan "ESNext"
+
+C) Menjalankan project ts-node
+    C.1) Syntax
+    : npx tsc-node-esm <lokasi file typescript>
+
+    C.2) Contoh
+    : npx tsc-node-esm src/index.ts
+
+D) Promise with then
+    D.1) Syntax
+    : fetch(<url api>)
+      .then((<nama response>) => <nama response>.json())
+      .then((<nama convert json>: <type>) => {
+        //Syntax
+      })
+
+    D.2) Contoh
+    : fetch("https://pokeapi.co/api/v2/pokemon")
+      .then((response) => response.json())
+      .then((data): PokemonList =>{
+        console.log(data)
+      })
+
+E) Error handling with catch
+    E.1) Syntax
+    : fetch(<url api>)
+        .then((<nama response>) => <nama response>.json())
+        .then((<nama convert json>: <type>) => {
+            //Syntax
+      }).catch((<nama error>) =>{
+        //syntax handling error
+      })
+
+    E.2) Contoh
+    :  fetch("https://pokeapi.co/api/v2/pokemon")
+        .then((response) => response.json())
+        .then((data): PokemonList =>{
+            console.log(data)
+        }).catch((err) =>{
+            console.log(err);
+        })
+
+F) Async Await
