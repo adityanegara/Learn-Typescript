@@ -58,3 +58,62 @@ E) Error handling with catch
         })
 
 F) Async Await
+  F.1) Syntax
+  : const <nama function> = async () =>{
+    try{
+      //syntax 
+    }
+    catch(<variable error>){
+      //syntax
+    }
+  }
+
+  F.2) Contoh
+  : const fetchPokemon = async (): Promise<{type dari promise}>=>{
+    try{
+        const listResponse = await fetch('https://pokeapi.co/api/v2/pokemon');
+        const list: ListPokemon = await listResponse.json();
+        return list;
+    }
+    catch(err)
+    {
+      throw(err);
+    }
+  }
+
+G) Membuat promise 
+  G.1) Syntax
+  : const <nama function> = async ():Promise<{type kembalian promise}> =>{
+     return new Promise(async (resolve, reject) =>{
+        try{
+          //syntax
+        }
+        catch(error){
+          reject(error);
+        }
+     }
+  }
+
+  G.2) Contoh
+  : const getBulbasaurPromise = async (): Promise<Pokemon> =>{
+    return new Promise(async (resolve, reject) =>{
+        try{
+            console.log('getting bulbasaur in a promsie');
+            const pokemonList:PokemonList = await getPokemonList();
+            resolve(await getPokemon(pokemonList.results[0].url));
+        }catch(error){
+            reject(error)
+        }
+    })
+}
+
+H) Promise.all
+  : Bila anda memiliki sekumpulan promise dan harus mengembalikan sekumpulan responsenya
+  anda dapat menggunakan promise.all
+
+  H.1) Syntax
+  : const <nama variable> = await Promise.all(<array of promise>);
+
+  H.2) Contoh
+  : const pokemonsName = await Promise.all(list.results.slice(0,5).map((pokemon) => getPokemon(pokemon.url))
+
