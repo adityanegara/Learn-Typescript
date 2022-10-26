@@ -10,37 +10,108 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const noteListContainer = document.querySelector('ul');
+let postList = [];
 const fetchPostList = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch(`${BASE_URL}/posts`);
-        const postList = yield response.json();
-        return postList;
+        postList = yield response.json();
     }
     catch (err) {
         throw (err);
     }
 });
-const renderPostList = () => __awaiter(void 0, void 0, void 0, function* () {
-    const postList = yield fetchPostList();
+const renderPostList = (postList) => __awaiter(void 0, void 0, void 0, function* () {
+    noteListContainer.innerHTML = '';
     postList.forEach(post => {
         noteListContainer.append(createPost(post));
     });
 });
+const createUnsaveButton = (post) => {
+    const saveButton = document.createElement('button');
+    saveButton.classList.add('save-post__button');
+    saveButton.innerHTML = 'Unsave';
+    saveButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+        if ((yield unsavePost(post)) == true) {
+            renderPostList(postList);
+        }
+    }));
+    return saveButton;
+};
 const createSaveButton = (post) => {
     const saveButton = document.createElement('button');
     saveButton.classList.add('save-post__button');
     saveButton.innerHTML = 'Save';
-    saveButton.addEventListener('click', () => {
-        console.log(`saving ${post.id}`);
-    });
+    saveButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+        if ((yield savePost(post)) == true) {
+            renderPostList(postList);
+        }
+    }));
     return saveButton;
 };
+const unsavePost = (updatePost) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const newTitle = updatePost.title.replace('(SAVED)', '');
+        yield fetch(`${BASE_URL}/posts/${updatePost.id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                title: newTitle,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        });
+        const savedPost = postList.map(post => {
+            if (post.id == updatePost.id) {
+                return Object.assign(Object.assign({}, post), { title: newTitle });
+            }
+            else {
+                return post;
+            }
+        });
+        postList = savedPost;
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+});
+const savePost = (updatePost) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield fetch(`${BASE_URL}/posts/${updatePost.id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                title: `(SAVED)${updatePost.title}`,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        });
+        const savedPost = postList.map(post => {
+            if (post.id == updatePost.id) {
+                return Object.assign(Object.assign({}, post), { title: `(SAVED)${updatePost.title}` });
+            }
+            else {
+                return post;
+            }
+        });
+        postList = savedPost;
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+});
 const deletePost = (postId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('deleting post');
         yield fetch(`${BASE_URL}/posts/${postId}`, {
             method: 'DELETE',
         });
+        const filteredPost = postList.filter((post) => {
+            if (post.id !== postId) {
+                return post;
+            }
+        });
+        postList = filteredPost;
         return true;
     }
     catch (err) {
@@ -52,10 +123,19 @@ const createDeleteButton = (postId) => {
     deleteButton.classList.add('delete-post__button');
     deleteButton.innerHTML = 'Delete';
     deleteButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
-        yield deletePost(postId);
-        renderPostList();
+        if ((yield deletePost(postId)) == true) {
+            renderPostList(postList);
+        }
     }));
     return deleteButton;
+};
+const isPostSaved = (post) => {
+    if (post.title.indexOf('(SAVED)') > -1) {
+        return true;
+    }
+    else {
+        return false;
+    }
 };
 const createPost = (newPost) => {
     const post = document.createElement('li');
@@ -70,7 +150,9 @@ const createPost = (newPost) => {
     postBody.innerHTML = newPost.body;
     const postButtons = document.createElement('div');
     postButtons.classList.add('post-buttons');
-    postButtons.append(createSaveButton(newPost));
+    (isPostSaved(newPost) ?
+        postButtons.append(createUnsaveButton(newPost)) :
+        postButtons.append(createSaveButton(newPost)));
     postButtons.append(createDeleteButton(newPost.id));
     postContent.append(postTitle);
     postContent.append(postBody);
@@ -78,4 +160,13 @@ const createPost = (newPost) => {
     post.append(postButtons);
     return post;
 };
-renderPostList();
+const firstRender = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield fetchPostList();
+        yield renderPostList(postList);
+    }
+    catch (e) {
+        throw (e);
+    }
+});
+firstRender();
