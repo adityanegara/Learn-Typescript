@@ -1,0 +1,42 @@
+A) Instalasi
+    A.1) Command
+    : npx crete-react-app <nama app> --template typescript
+
+    A.2) Contoh
+    : npx create-react-app reminders-app --template typescript
+
+B) Props
+    : Pada react typescript penulisan props harus diikuti pula dengan typenya.
+    Penamaan type dari props biasanya <nama component>Props.
+
+    B.1) Syntax
+    : const <nama function> = (<props>:<type dari props>) =>{}
+
+    B.2) Contoh
+    : interface ReminderProps{
+        id:number,
+        name:string,
+    }
+    const Reminder = (reminder: ReminderProps) =>{
+        //syntax component
+    }
+
+C) State
+    : Penggunaan state pada React typescript harus memasukan generic type dari state tersebut.
+
+    C.1) Syntax
+    : const [<nama state>, <nama setter>] = useState<[type]>(<nilai awal>);
+
+    C.2) Contoh
+    : const [reminderList, setReminderList] = useState<Reminder[]>(REMINDER);
+
+D) Mengonsumsi API
+    : Mengonsumsi API dengan axios tidak perlu menginstall @types/axios karena axios sudah 
+    memiliki file type definition sendiri. pengiriman data kepada api juga harus mendefinisikan
+    generic.
+
+    D.1) Syntax
+    :  await this.http.<nama method><{type}>('<url>', <data yang dikirm>);
+
+    D.2) Contoh
+    : await this.http.post<Reminder>('/todos', {todo});
