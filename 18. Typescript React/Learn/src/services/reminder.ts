@@ -7,17 +7,18 @@ class ReminderService{
         baseURL: 'https://jsonplaceholder.typicode.com/'
     });
 
-    getReminders = async ():Promise<Reminder[] | void> =>{
+    getReminders = async ():Promise<Reminder[] | null> =>{
         try{
             const response = await this.http.get<Reminder[]>('/todos');
             return response.data as Reminder[];
         }
         catch(e){
           console.log(e);
+          return null;
         }
     }
 
-    addReminders = async (title:string):Promise<CreateResponse | void> => {
+    addReminders = async (title:string):Promise<CreateResponse | null> => {
         try{
             const response = await this.http.post<Reminder>('/todos', 
             {
@@ -27,6 +28,7 @@ class ReminderService{
         }
         catch(e){
             console.log(e);
+            return null;
         }
     }
 
