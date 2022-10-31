@@ -1,0 +1,59 @@
+A) Definisi Queries
+: Queries adalah method dari Testing Library yang mengizinkan anda
+mencari element dari sebuah halaman.
+
+B) Syntax
+: screen.<method pencarian>;
+
+C) Contoh
+: screen.getLabelText('Username'). Mencari element dengan lebel text Username.
+
+D) Tipe Queries
+    D.1) getBy...
+    : - Jika tidak ada element maka mengembalikan error.
+      - Mengembalikan satu element. 
+      - Jika lebih dari satu element error.
+    
+    D.2) getAllBy...
+    : - Jika tidak ada element maka mengembalikan error.
+      - Mengembalikan array of element.
+    
+    D.3) queryBy...
+    : - Jika tidak ada element maka mengembalikan null.
+      - Mengembalikan satu element.
+      - Jika lebih dari satu maka akan mengembalikan error.
+
+    D.4) queryAllBy...
+    : - Jika tidak ada element mengembalikan array kosong([]).
+      - Mengembalikan array of element.
+
+    D.5) findBy
+    : - Mengembalikan promise yang akan resolve bila element dengan
+    query sesuai ditemukan. 
+      - Promise akan di reject bila tidak ditemukannya element dalam
+      waktu 1000ms.
+      - Promise akan di reject bila ditemukannya lebih dari 1 element.
+
+    D.6) findAllBy
+    : - Mengembalikan promise yang bila resolve akan mengembalikan array of
+    element ketika query sesuai ditemukan.
+      - Promise akan di reject bila tidak ditemukannya element dalam waktu 
+    1000ms.
+
+E) Priority
+: Test yang anda tulis harus menyerupai bagaimana pengguna berinteraksi
+dengan code. Dengan begitu inilah urutan dari queries.
+
+    E.1) Queries yang dapat diakses oleh semuanya
+    : - getByRole 
+      - getByLabelText
+      - getByPlaceholderText
+      - getByText
+      - getByDisplayValue
+
+    E.2) Semantic Queries
+    : - getByAltText
+      - getByTitle
+
+    E.3) Test ID
+    : getByTestId

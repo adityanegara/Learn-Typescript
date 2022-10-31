@@ -1,0 +1,29 @@
+A) Basic Component testing
+    A.1) Syntax
+    : describe(<nama test suites>, () =>{
+            it(<ama test>, () =>{
+                //syntax test
+            })
+      })
+    
+    A.2) Contoh
+    : describe('Person component should', () =>{
+        it('be able to render First Name', () =>{
+            render(<Person firstName="Aditya" lastName="Negara" id={1}/>)
+            const firstNameElement = screen.getByRole('first-name');
+            expect(firstNameElement).toHaveTextContent('Aditya');
+        })
+    })
+
+    A.3) render
+    : Render ialah method dari react testing library yang
+    berfungsi untuk menampilkan component ke container(document.body)
+
+        A.3.1) Syntax import
+        : import {render} from '@testing-library/react'
+
+        A.3.2) Syntax
+        : render(<component yang ingin ditampilkan>)
+
+        A.3.3) Contoh Penggunaan
+        : render(<Note notelist={noteList}/>);
