@@ -1,6 +1,5 @@
 import LearnQueries from "./LearnQueries";
 import { render, screen, fireEvent} from "@testing-library/react";
-import { click } from "@testing-library/user-event/dist/click";
 
 describe('getBy queries method.', () =>{
     beforeEach(()=>{
