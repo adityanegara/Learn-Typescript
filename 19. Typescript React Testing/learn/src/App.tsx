@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Test from './components/Test/Test';
 import LearnQueries from './components/LearnQueries/LearnQueries';
+import Input from './components/Input/Input';
 
 function App() {
   return (
     <div className="App">
-      <Test/>
-      <LearnQueries/>
+      <Input/>
+      {/* <Test/>
+      <LearnQueries/> */}
     </div>
   );
 }
