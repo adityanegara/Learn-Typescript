@@ -2,6 +2,7 @@ import { useState } from "react"
 
 const LearnQueries = () =>{
     const [count, setCount] = useState<number>(0);
+    const [isElementShown, setIsElementShown] = useState<boolean>(false);
     
     const renderCount = (count:number):string =>{
         switch(count)
@@ -17,13 +18,25 @@ const LearnQueries = () =>{
         }
     }
 
+    const increaseCount = ():void =>{
+        setCount((count) => count + 1)
+    }
+
+    const renderElement = (isElementShown:boolean):JSX.Element =>{
+        return (isElementShown) ?  <p role='hiding-text'>Im out of my hiding</p> : <></>;
+    }
+
     return(
         <div>
             <h1 role="heading">Learning Queries</h1>
             <h2 role="second-header">Im Aditya Negara</h2>
             <h2 role="second-header">Im Aura Puteri Negeri</h2>
-            <button role="count-button">Count Button</button>
+            <button onClick={increaseCount} role="count-button">Count Button</button>
+            <button onClick={()=>{setTimeout(()=>{setIsElementShown((element) => !element)}, 500)    }} role="wait-count-button">Show Element</button>
             <p role="count-display">{renderCount(count)}</p>
+            <p role="count-display-two">{renderCount(count)}</p>
+            <p role="count-display-two">{renderCount(count)}</p>
+            {renderElement(isElementShown)}
         </div>
     )
 }

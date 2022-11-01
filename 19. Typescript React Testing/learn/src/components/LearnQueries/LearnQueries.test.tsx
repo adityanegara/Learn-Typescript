@@ -1,5 +1,6 @@
 import LearnQueries from "./LearnQueries";
 import { render, screen, fireEvent} from "@testing-library/react";
+import { click } from "@testing-library/user-event/dist/click";
 
 describe('getBy queries method.', () =>{
     beforeEach(()=>{
@@ -51,14 +52,48 @@ describe('queryBy query method.', () =>{
     })
 })
 
-describe('findBy', () =>{
+describe('findBy query method.', () =>{
     beforeEach(()=>{
         render(<LearnQueries/>);
     })
-    fit('Should return a promise if matches query is found', async () =>{
+    fit('Should return an array of element', () =>{
+        const secondHeader = screen.queryAllByRole("second-header");
+        expect(secondHeader).toHaveLength(2);
+    })
+})
+
+describe('findBy query method.', () =>{
+    beforeEach(()=>{
+        render(<LearnQueries/>);
+    })
+    it('Should return a promise if matches query is found', async () =>{
         const countButton = screen.getByRole('count-button');
         fireEvent.click(countButton)
-        const countDisplay = screen.getByRole('count-display');
+        const countDisplay = await screen.findByRole('count-display');
         expect(countDisplay).toHaveTextContent('The button is clicked once');
+    })
+    it('Should return an error if there is no element after 1 second', async () =>{
+        const waitCountButton = screen.getByRole('wait-count-button');
+        fireEvent.click(waitCountButton)
+        const hidingText = await screen.findByRole('hiding-text');
+        expect(hidingText).toBeInTheDocument();
+    })
+    it('Will reject a promise if found more than one element', async()=>{
+        const countButton = screen.getByRole('count-button');
+        fireEvent.click(countButton)
+        const countDisplay = await screen.findByRole('count-display-two');
+        expect(countDisplay).toHaveLength(2);
+    })
+})
+
+describe("findAllBy query method.", () =>{
+    beforeEach(()=>{
+        render(<LearnQueries/>);
+    })
+    it('Should retur a resolve promise if found multiple element', async () =>{
+        const countButton = screen.getByRole('count-button');
+        fireEvent.click(countButton)
+        const countDisplay = await screen.findAllByRole('count-display-two');
+        expect(countDisplay).toHaveLength(2);
     })
 })
